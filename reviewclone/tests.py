@@ -4,9 +4,10 @@ from datetime import datetime
            
 from django.contrib.auth.models import User
 from django.test import TestCase
+from django.test.client import Client
 
-from models import Review, Item, Relation
-from utils import find_simular 
+from reviewclone.models import Review, Item, Relation, Simular
+from reviewclone.utils import find_simular 
 
 class TestModels(TestCase):
     fixtures = ['item.json', 'item']
@@ -32,37 +33,42 @@ class TestModels(TestCase):
             user=self.first_user, 
             item=self.first_item,
             amount=5
-        )
+        ).save()
         self.review2 = Review(
             user=self.first_user, 
             item=self.second_item,
             amount=1
-        )            
+        ).save()           
         self.review3 = Review(
             user=self.first_user, 
             item=self.third_item,
             amount=3
-        ) 
+        ).save()
         self.review4 = Review(
             user=self.second_user, 
             item=self.first_item,
             amount=4
-        )    
-        self.review4 = Review(
+        ).save()   
+        self.review5 = Review(
             user=self.second_user, 
             item=self.second_item,
             amount=5
-        )   
-        self.review5 = Review(
+        ).save()  
+        self.review6 = Review(
+            user=self.second_user, 
+            item=self.third_item,
+            amount=3
+        ).save()        
+        self.review7 = Review(
             user=self.third_user, 
             item=self.second_item,
-            amount=4
-        )    
-        self.review6 = Review(
+            amount=1
+        ).save()   
+        self.review8 = Review(
             user=self.third_user, 
             item=self.third_item,
             amount=1
-        )  
+        ).save()  
 
     def test_user_count(self):
         self.assertEqual(User.objects.all().count(), 3)
@@ -71,11 +77,73 @@ class TestModels(TestCase):
         self.assertEqual(Item.objects.all().count(), 257)
 
     def test_review_count(self):
-        pass
+        self.assertEqual(Review.objects.all().count(), 8)
 
 
 class TestSimular(TestModels):
 
+    def test_first_user_review_count(self):
+        self.assertEqual(Review.objects.filter(user=self.first_user).count(), 3)
+
+    def test_second_user_review_count(self):
+        self.assertEqual(Review.objects.filter(user=self.second_user).count(), 3)
+
     def test_first_user(self):
-        pass
+        self.assertEqual(len(find_simular(self.first_user)), 2)
+
+    def test_create_simular(self):
+        for user, count in find_simular(self.first_user).iteritems():
+            Simular(
+                user_1=self.first_user, 
+                user_2=user, 
+                count=count
+            ).save()
+        simular_list = Simular.objects.filter(user_1=self.first_user)
+        self.assertEqual(simular_list.count(), 2)
+ 
+
+class TestViews(TestModels):
+
+    def test_create_relation(self):
+       pass
+ 
+    def test_create_relation_error(self):
+       pass    
+
+    def test_delete_relation(self):
+       pass
+
+    def test_relations_list(self):
+       pass
+
+    def test_dashboard(self):
+       pass 
+
+    def test_dashboard_access(self):
+       pass
+ 
+    def test_user_reviews(self):
+       pass
+
+    def test_user_reviews_404(self):
+       pass
+
+    def test_simular_list(self):
+       pass
+
+    def test_list_items(self):
+       pass
+
+    def test_list_items_letter(self):
+       pass
+ 
+    def test_create_review(self):
+       pass
+ 
+    def test_create_review_error(self):
+       pass            
+
+    def test_after_review(self):
+       pass
+ 
 
