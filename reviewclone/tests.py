@@ -3,6 +3,7 @@ import string
 from datetime import datetime 
            
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
 from django.test import TestCase
 from django.test.client import Client
 
@@ -13,10 +14,22 @@ class TestModels(TestCase):
     fixtures = ['item.json', 'item']
 
     def setUp(self):
+
+        self.generic_password = "12345"
+
         # Create users
-        User.objects.create_user("foo", "foo@example.com", "12345", ).save()
-        User.objects.create_user("foo2", "foo2@example.com", "12345", ).save()
-        User.objects.create_user("foo3", "foo3@example.com", "12345", ).save()
+        User.objects.create_user("foo", 
+                                 "foo@example.com", 
+                                 self.generic_password,
+                                ).save()
+        User.objects.create_user("foo2",
+                                 "foo2@example.com",
+                                 self.generic_password,
+                                ).save()
+        User.objects.create_user("foo3", 
+                                 "foo3@example.com", 
+                                 self.generic_password,
+                                ).save()
 
         # Find Users
         self.first_user = User.objects.get(pk=1)
@@ -70,6 +83,14 @@ class TestModels(TestCase):
             amount=1
         ).save()  
 
+        self.not_logged_in_client = Client()
+        
+        self.logged_in_client = Client()
+        self.logged_in_client.login(
+            username=self.first_user.username, 
+            password=self.generic_password
+        )
+
     def test_user_count(self):
         self.assertEqual(User.objects.all().count(), 3)
 
@@ -105,45 +126,81 @@ class TestSimular(TestModels):
 class TestViews(TestModels):
 
     def test_create_relation(self):
-       pass
- 
+        response = self.logged_in_client.get(reverse('create_relation'))
+        self.failUnlessEqual(response.status_code, 200)
+        self.failUnlessEqual(response.template[0].name, 'reviewclone/create_relation.html')
+
+    def test_create_relation_form(self):
+        #response = self.logged_in_client.get(reverse('create_relation'))
+        #self.failUnlessEqual(response.status_code, 200)
+        #self.failUnlessEqual(response.template[0].name, 'reviewclone/create_relation.html')
+        pass
+
     def test_create_relation_error(self):
-       pass    
+        response = self.logged_in_client.get(reverse('create_relation'))
+        self.failUnlessEqual(response.status_code, 200)
 
     def test_delete_relation(self):
-       pass
+        response = self.logged_in_client.get(reverse('delete_relation'))
+        self.failUnlessEqual(response.status_code, 200) 
 
     def test_relations_list(self):
-       pass
+        response = self.logged_in_client.get(reverse('relations'))
+        self.failUnlessEqual(response.status_code, 200)
 
     def test_dashboard(self):
-       pass 
+        response = self.logged_in_client.get(reverse('dashboard'))
+        self.failUnlessEqual(response.status_code, 200) 
 
     def test_dashboard_access(self):
-       pass
- 
+        response = self.not_logged_in_client.get(reverse('dashboard'))
+        self.failUnlessEqual(response.status_code, 302)
+
     def test_user_reviews(self):
-       pass
+        response = self.logged_in_client.get(
+            reverse('user_reviews', 
+                args=[self.first_user.username],
+            )
+        )
+        self.failUnlessEqual(response.status_code, 200) 
 
     def test_user_reviews_404(self):
-       pass
+        response = self.logged_in_client.get(
+            reverse('user_reviews', 
+                args=['not_a_real_user'],
+            )
+        )
+        self.failUnlessEqual(response.status_code, 404) 
 
     def test_simular_list(self):
-       pass
+        response = self.logged_in_client.get(reverse('simular_list'))
+        self.failUnlessEqual(response.status_code, 200)  
 
-    def test_list_items(self):
-       pass
+    def test_items_list(self):
+        response = self.logged_in_client.get(reverse('items_list'))
+        self.failUnlessEqual(response.status_code, 200) 
 
-    def test_list_items_letter(self):
-       pass
- 
-    def test_create_review(self):
-       pass
- 
+    def test_items_list_letter(self):
+        response = self.logged_in_client.get(reverse('items_list'))
+        self.failUnlessEqual(response.status_code, 200) 
+
+    def test_create_review_form(self):
+        response = self.logged_in_client.get(
+            reverse('create_review', 
+                args=[2],
+                   )
+        )
+        self.failUnlessEqual(response.status_code, 200) 
+
     def test_create_review_error(self):
-       pass            
+        response = self.logged_in_client.get(
+            reverse('create_review',
+                args=[2],
+            )
+        )
+        self.failUnlessEqual(response.status_code, 200) 
 
     def test_after_review(self):
-       pass
- 
+        response = self.logged_in_client.get(reverse('after_review', args=[1]))
+        self.failUnlessEqual(response.status_code, 200)  
 

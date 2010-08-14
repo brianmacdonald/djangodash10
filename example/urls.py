@@ -6,7 +6,9 @@ admin.autodiscover()
 
 import os.path
 
-urlpatterns = patterns()
+urlpatterns = patterns('',
+    (r'^', include('reviewclone.urls')),                      
+)
 
 urlpatterns += patterns('',
     (r'^admin/(.*)', admin.site.root),    

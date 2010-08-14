@@ -1,15 +1,19 @@
+from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+from django.db.models import Q
+from django.template import RequestContext 
+from django.shortcuts import render_to_response, get_object_or_404
 
-from django.shortcuts import render_to_response
 
+from reviewclone.forms import ReviewForm, RelationForm
 from reviewclone.models import Item, Review, Relation, Simular
-from utils import find_simular
+from reviewclone.utils import find_simular
 
 @login_required
-def create_relation(request, template_name="reviewclone/new_relation.html"):
+def create_relation(request, template_name="reviewclone/create_relation.html"):
     if request.POST:
         user_2_id = request.POST.get('user')
         user_2 = get_object_or_404(User, pk=user_2_id)
-        # This *could* be a get method...
         user_relation = Relation.objects.filter(
             user_1 = request.user,
             user_2 = user_2, 
@@ -20,7 +24,13 @@ def create_relation(request, template_name="reviewclone/new_relation.html"):
             form.save()
     else:
         form = RelationForm()
-    return render_to_response()
+    return render_to_response(
+        template_name,
+        {
+            'form': form,
+        },
+        context_instance=RequestContext(request)
+    )
 
 @login_required
 def delete_relation(request, template_name="reviewclone/delete_relation.html"):
@@ -31,11 +41,16 @@ def delete_relation(request, template_name="reviewclone/delete_relation.html"):
         # TODO: Finish this
     else:
         form = RelationForm()
-    return render_to_response()
+    return render_to_response(
+        template_name,
+        {
+        },
+        context_instance=RequestContext(request)
+    )
 
 @login_required
 def relations_list(request, template_name="reviewclone/relations_list.html"):
-    user_relations = Relation.objects.filter(user=request.user)
+    user_relations = Relation.objects.filter(user_1=request.user)
     return render_to_response(
         template_name,
         {
@@ -48,21 +63,20 @@ def relations_list(request, template_name="reviewclone/relations_list.html"):
 def dashboard(request, template_name="reviewclone/dashboard.html"):
     """Combination list of users reviews and followies reviews"""
     relation_users = Relation.objects.filter(user_1=request.user)
-    user_reviews = Reviews.object.filter(
-        Q(user=response.user|user__in=relation_users.values_list('user_2'))
+    user_reviews = Review.objects.filter(
+        Q(user=request.user)|Q(user__in=relation_users.values_list('user_2'))
     )
     return render_to_response(
         template_name,
         {
-            'object_list': reviews,
+            'object_list': user_reviews,
         },
         context_instance=RequestContext(request)
     )
 
-@login_required
-def user_reviews(request, username, template_name="reviewclone/user_review_list.html"):
-    user = get_object_or_404(User, username=username)
-    reviews = Reviews.object.filter(user=user)
+def user_reviews(request, username_slug, template_name="reviewclone/user_reviews.html"):
+    user = get_object_or_404(User, username=username_slug)
+    reviews = Review.objects.filter(user=user)
     return render_to_response(
         template_name,
         {
@@ -99,7 +113,7 @@ def items_list(request, first_letter=None, template_name="reviewclone/items_list
     return render_to_response(
         template_name,
         {
-            'object_list': simular,
+            'object_list': items,
         },
         context_instance=RequestContext(request)
     )
@@ -107,16 +121,16 @@ def items_list(request, first_letter=None, template_name="reviewclone/items_list
 @login_required
 def create_review(request, item_id, template_name="reviewclone/create_review.html"):
     review_exist = False
+    item = get_object_or_404(Item, pk=item_id)
     if request.POST:
-        item = get_object_or_404(Item, pk=item_id)
-        form = ItemForm(request.POST)
+        form = ReviewForm(request.POST)
         if Unit.object.filter(item=item, user=request.user):
              review_exist = True
         if form.is_valid() and not review_exist:
             form.instance.user_1 = request.user
             form.save()
     else:
-        form = ItemForm()
+        form = ReviewForm()
     return render_to_response(
         template_name,
         {
@@ -126,12 +140,18 @@ def create_review(request, item_id, template_name="reviewclone/create_review.htm
     )
  
 @login_required
-def after_review(request, review_id):
+def after_review(request, review_id, template_name="reviewclone/after_review.html"):
     # check review count
     
     # if review count is not greater than n
         # Force to next review
 
     # 
-    pass
+
+    return render_to_response(
+        template_name,
+        {
+        },
+        context_instance=RequestContext(request)
+    )        
  
