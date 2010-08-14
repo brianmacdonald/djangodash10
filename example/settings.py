@@ -77,3 +77,4 @@ LANGUAGES = (
     ('en', 'English'),
     )
 
+REVIEWCLONE_OFFSET = 1.5
