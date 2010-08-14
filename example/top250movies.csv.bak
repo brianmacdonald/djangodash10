@@ -1,0 +1,258 @@
+pk,name,released, ""-01-01 00:00
+2, "The Shawshank Redemption", 1994-01-01 00:00
+3, "The Godfather", 1972-01-01 00:00
+4, "Inception", 2010-01-01 00:00
+5, "The Godfather: Part II", 1974-01-01 00:00
+6, "The Good, the Bad and the Ugly", 1966-01-01 00:00
+7, "Pulp Fiction", 1994-01-01 00:00
+8, "Schindler's List", 1993-01-01 00:00
+9, "12 Angry Men", 1957-01-01 00:00
+10, "One Flew Over the Cuckoo's Nest", 1975-01-01 00:00
+11, "Star Wars: Episode V - The Empire Strikes Back", 1980-01-01 00:00
+12, "The Dark Knight", 2008-01-01 00:00
+13, "Toy Story 3", 2010-01-01 00:00
+14, "The Lord of the Rings: The Return of the King", 2003-01-01 00:00
+15, "Star Wars: Episode IV - A New Hope", 1977-01-01 00:00
+16, "Seven Samurai", 1954-01-01 00:00
+17, "Casablanca", 1942-01-01 00:00
+18, "Goodfellas", 1990-01-01 00:00
+19, "Fight Club", 1999-01-01 00:00
+20, "City of God", 2002-01-01 00:00
+21, "The Lord of the Rings: The Fellowship of the Ring", 2001-01-01 00:00
+22, "Rear Window", 1954-01-01 00:00
+23, "Raiders of the Lost Ark", 1981-01-01 00:00
+24, "Psycho", 1960-01-01 00:00
+25, "The Usual Suspects", 1995-01-01 00:00
+26, "Once Upon a Time in the West", 1968-01-01 00:00
+27, "The Silence of the Lambs", 1991-01-01 00:00
+28, "The Matrix", 1999-01-01 00:00
+29, "Se7en", 1995-01-01 00:00
+30, "Memento", 2000-01-01 00:00
+31, "The Lord of the Rings: The Two Towers", 2002-01-01 00:00
+32, "It's a Wonderful Life", 1946-01-01 00:00
+33, "Sunset Blvd.", 1950-01-01 00:00
+34, "Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb", 1964-01-01 00:00
+35, "The Professional", 1994-01-01 00:00
+36, "North by Northwest", 1959-01-01 00:00
+37, "Citizen Kane", 1941-01-01 00:00
+38, "Forrest Gump", 1994-01-01 00:00
+39, "Apocalypse Now", 1979-01-01 00:00
+40, "American Beauty", 1999-01-01 00:00
+41, "American History X", 1998-01-01 00:00
+42, "Taxi Driver", 1976-01-01 00:00
+43, "Terminator 2: Judgment Day", 1991-01-01 00:00
+44, "Vertigo", 1958-01-01 00:00
+45, "Alien", 1979-01-01 00:00
+46, "Lawrence of Arabia", 1962-01-01 00:00
+47, "Saving Private Ryan", 1998-01-01 00:00
+48, "Amélie", 2001-01-01 00:00
+49, "WALL·E", 2008-01-01 00:00
+50, "The Shining", 1980-01-01 00:00
+51, "A Clockwork Orange", 1971-01-01 00:00
+52, "Paths of Glory", 1957-01-01 00:00
+53, "The Departed", 2006-01-01 00:00
+54, "The Pianist", 2002-01-01 00:00
+55, "Aliens", 1986-01-01 00:00
+56, "To Kill a Mockingbird", 1962-01-01 00:00
+57, "Spirited Away", 2001-01-01 00:00
+58, "M", 1931-01-01 00:00
+59, "The Lives of Others", 2006-01-01 00:00
+60, "Double Indemnity", 1944-01-01 00:00
+61, "Eternal Sunshine of the Spotless Mind", 2004-01-01 00:00
+62, "Chinatown", 1974-01-01 00:00
+63, "Requiem for a Dream", 2000-01-01 00:00
+64, "L.A. Confidential", 1997-01-01 00:00
+65, "Reservoir Dogs", 1992-01-01 00:00
+66, "The Third Man", 1949-01-01 00:00
+67, "Das Boot", 1981-01-01 00:00
+68, "The Treasure of the Sierra Madre", 1948-01-01 00:00
+69, "Monty Python and the Holy Grail", 1975-01-01 00:00
+70, "City Lights", 1931-01-01 00:00
+71, "Pan's Labyrinth", 2006-01-01 00:00
+72, "The Bridge on the River Kwai", 1957-01-01 00:00
+73, "The Prestige", 2006-01-01 00:00
+74, "Raging Bull", 1980-01-01 00:00
+75, "Back to the Future", 1985-01-01 00:00
+76, "2001: A Space Odyssey", 1968-01-01 00:00
+77, "Life Is Beautiful", 1997-01-01 00:00
+78, "Inglourious Basterds", 2009-01-01 00:00
+79, "Modern Times", 1936-01-01 00:00
+80, "Singin' in the Rain", 1952-01-01 00:00
+81, "Some Like It Hot", 1959-01-01 00:00
+82, "Downfall", 2004-01-01 00:00
+83, "Amadeus", 1984-01-01 00:00
+84, "Full Metal Jacket", 1987-01-01 00:00
+85, "Up", 2009-01-01 00:00
+86, "Cinema Paradiso", 1988-01-01 00:00
+87, "Braveheart", 1995-01-01 00:00
+88, "Once Upon a Time in America", 1984-01-01 00:00
+89, "The Maltese Falcon", 1941-01-01 00:00
+90, "The Green Mile", 1999-01-01 00:00
+91, "All About Eve", 1950-01-01 00:00
+92, "Rashômon", 1950-01-01 00:00
+93, "Metropolis", 1927-01-01 00:00
+94, "Gran Torino", 2008-01-01 00:00
+95, "The Elephant Man", 1980-01-01 00:00
+96, "The Great Dictator", 1940-01-01 00:00
+97, "Gladiator", 2000-01-01 00:00
+98, "The Apartment", 1960-01-01 00:00
+99, "Sin City", 2005-01-01 00:00
+100, "Rebecca", 1940-01-01 00:00
+101, "The Sting", 1973-01-01 00:00
+102, "The Great Escape", 1963-01-01 00:00
+103, "Indiana Jones and the Last Crusade", 1989-01-01 00:00
+104, "Star Wars: Episode VI - Return of the Jedi", 1983-01-01 00:00
+105, "Unforgiven", 1992-01-01 00:00
+106, "Bicycle Thieves", 1948-01-01 00:00
+107, "Jaws", 1975-01-01 00:00
+108, "Slumdog Millionaire", 2008-01-01 00:00
+109, "Batman Begins", 2005-01-01 00:00
+110, "Die Hard", 1988-01-01 00:00
+111, "On the Waterfront", 1954-01-01 00:00
+112, "Blade Runner", 1982-01-01 00:00
+113, "Oldeuboi", 2003-01-01 00:00
+114, "Mr. Smith Goes to Washington", 1939-01-01 00:00
+115, "Hotel Rwanda", 2004-01-01 00:00
+116, "Avatar", 2009-01-01 00:00
+117, "No Country for Old Men", 2007-01-01 00:00
+118, "Touch of Evil", 1958-01-01 00:00
+119, "The Seventh Seal", 1957-01-01 00:00
+120, "Fargo", 1996-01-01 00:00
+121, "Princess Mononoke", 1997-01-01 00:00
+122, "For a Few Dollars More", 1965-01-01 00:00
+123, "The Wizard of Oz", 1939-01-01 00:00
+124, "Heat", 1995-01-01 00:00
+125, "District 9", 2009-01-01 00:00
+126, "Strangers on a Train", 1951-01-01 00:00
+127, "Cool Hand Luke", 1967-01-01 00:00
+128, "Donnie Darko", 2001-01-01 00:00
+129, "The Sixth Sense", 1999-01-01 00:00
+130, "High Noon", 1952-01-01 00:00
+131, "Notorious", 1946-01-01 00:00
+132, "The Deer Hunter", 1978-01-01 00:00
+133, "Snatch.", 2000-01-01 00:00
+134, "The General", 1926-01-01 00:00
+135, "Kill Bill: Vol. 1", 2003-01-01 00:00
+136, "There Will Be Blood", 2007-01-01 00:00
+137, "Annie Hall", 1977-01-01 00:00
+138, "The Big Lebowski", 1998-01-01 00:00
+139, "Platoon", 1986-01-01 00:00
+140, "The Manchurian Candidate", 1962-01-01 00:00
+141, "Yojimbo", 1961-01-01 00:00
+142, "Ran", 1985-01-01 00:00
+143, "The Lion King", 1994-01-01 00:00
+144, "Into the Wild", 2007-01-01 00:00
+145, "Ben-Hur", 1959-01-01 00:00
+146, "The Big Sleep", 1946-01-01 00:00
+147, "Million Dollar Baby", 2004-01-01 00:00
+148, "The Wrestler", 2008-01-01 00:00
+149, "Toy Story", 1995-01-01 00:00
+150, "Witness for the Prosecution", 1957-01-01 00:00
+151, "It Happened One Night", 1934-01-01 00:00
+152, "Life of Brian", 1979-01-01 00:00
+153, "Butch Cassidy and the Sundance Kid", 1969-01-01 00:00
+154, "The Bourne Ultimatum", 2007-01-01 00:00
+155, "Finding Nemo", 2003-01-01 00:00
+156, "Wild Strawberries", 1957-01-01 00:00
+157, "Trainspotting", 1996-01-01 00:00
+158, "Gone with the Wind", 1939-01-01 00:00
+159, "The Terminator", 1984-01-01 00:00
+160, "Groundhog Day", 1993-01-01 00:00
+161, "Scarface", 1983-01-01 00:00
+162, "Stand by Me", 1986-01-01 00:00
+163, "The Graduate", 1967-01-01 00:00
+164, "The Thing", 1982-01-01 00:00
+165, "Amores Perros", 2000-01-01 00:00
+166, "Dog Day Afternoon", 1975-01-01 00:00
+167, "The Secret in Their Eyes", 2009-01-01 00:00
+168, "Gandhi", 1982-01-01 00:00
+169, "Star Trek", 2009-01-01 00:00
+170, "Ratatouille", 2007-01-01 00:00
+171, "V for Vendetta", 2006-01-01 00:00
+172, "The Wages of Fear", 1953-01-01 00:00
+173, "Lock, Stock and Two Smoking Barrels", 1998-01-01 00:00
+174, "Grave of the Fireflies", 1988-01-01 00:00
+175, "The Grapes of Wrath", 1940-01-01 00:00
+176, "Twelve Monkeys", 1995-01-01 00:00
+177, "Casino", 1995-01-01 00:00
+178, "The Gold Rush", 1925-01-01 00:00
+179, "8½", 1963-01-01 00:00
+180, "Diabolique", 1955-01-01 00:00
+181, "How to Train Your Dragon", 2010-01-01 00:00
+182, "Kick-Ass", 2010-01-01 00:00
+183, "The Night of the Hunter", 1955-01-01 00:00
+184, "Judgment at Nuremberg", 1961-01-01 00:00
+185, "The Incredibles", 2004-01-01 00:00
+186, "The Princess Bride", 1987-01-01 00:00
+187, "The Killing", 1956-01-01 00:00
+188, "The Wild Bunch", 1969-01-01 00:00
+189, "Kind Hearts and Coronets", 1949-01-01 00:00
+190, "The Exorcist", 1973-01-01 00:00
+191, "Children of Men", 2006-01-01 00:00
+192, "In Bruges", 2008-01-01 00:00
+193, "Sunrise: A Song of Two Humans", 1927-01-01 00:00
+194, "The Best Years of Our Lives", 1946-01-01 00:00
+195, "The Kid", 1921-01-01 00:00
+196, "Dial M for Murder", 1954-01-01 00:00
+197, "Nights of Cabiria", 1957-01-01 00:00
+198, "The Hustler", 1961-01-01 00:00
+199, "Good Will Hunting", 1997-01-01 00:00
+200, "Rosemary's Baby", 1968-01-01 00:00
+201, "Ed Wood", 1994-01-01 00:00
+202, "Harvey", 1950-01-01 00:00
+203, "Big Fish", 2003-01-01 00:00
+204, "Let the Right One In", 2008-01-01 00:00
+205, "King Kong", 1933-01-01 00:00
+206, "The Diving Bell and the Butterfly", 2007-01-01 00:00
+207, "A Streetcar Named Desire", 1951-01-01 00:00
+208, "Magnolia", 1999-01-01 00:00
+209, "Rocky", 1976-01-01 00:00
+210, "Sleuth", 1972-01-01 00:00
+211, "Kill Bill: Vol. 2", 2004-01-01 00:00
+212, "Letters from Iwo Jima", 2006-01-01 00:00
+213, "Mystic River", 2003-01-01 00:00
+214, "Network", 1976-01-01 00:00
+215, "Shadow of a Doubt", 1943-01-01 00:00
+216, "Stalag 17", 1953-01-01 00:00
+217, "Rope", 1948-01-01 00:00
+218, "Brief Encounter", 1945-01-01 00:00
+219, "The African Queen", 1951-01-01 00:00
+220, "Pirates of the Caribbean: The Curse of the Black Pearl", 2003-01-01 00:00
+221, "The Battle of Algiers", 1966-01-01 00:00
+222, "Crash", 2004/I-01-01 00:00
+223, "Bonnie and Clyde", 1967-01-01 00:00
+224, "The 400 Blows", 1959-01-01 00:00
+225, "Duck Soup", 1933-01-01 00:00
+226, "Planet of the Apes", 1968-01-01 00:00
+227, "Toy Story 2", 1999-01-01 00:00
+228, "Manhattan", 1979-01-01 00:00
+229, "Patton", 1970-01-01 00:00
+230, "The Truman Show", 1998-01-01 00:00
+231, "La strada", 1954-01-01 00:00
+232, "Ikiru", 1952-01-01 00:00
+233, "Barry Lyndon", 1975-01-01 00:00
+234, "All Quiet on the Western Front", 1930-01-01 00:00
+235, "The Conversation", 1974-01-01 00:00
+236, "Crouching Tiger, Hidden Dragon", 2000-01-01 00:00
+237, "Anatomy of a Murder", 1959-01-01 00:00
+238, "Little Miss Sunshine", 2006-01-01 00:00
+239, "Who's Afraid of Virginia Woolf?", 1966-01-01 00:00
+240, "The Nightmare Before Christmas", 1993-01-01 00:00
+241, "My Neighbor Totoro", 1988-01-01 00:00
+242, "Spartacus", 1960-01-01 00:00
+243, "The Adventures of Robin Hood", 1938-01-01 00:00
+244, "Monsters, Inc.", 2001-01-01 00:00
+245, "Roman Holiday", 1953-01-01 00:00
+246, "Mulholland Dr.", 2001-01-01 00:00
+247, "Changeling", 2008-01-01 00:00
+248, "The Curious Case of Benjamin Button", 2008-01-01 00:00
+249, "Shaun of the Dead", 2004-01-01 00:00
+250, "Rain Man", 1988-01-01 00:00
+251, "Infernal Affairs", 2002-01-01 00:00
+252, "Toy Story 3", 2010-01-01 00:00
+253, "Inception", 2010-01-01 00:00
+254, "The Other Guys", 2010-01-01 00:00
+255, "Dinner for Schmucks", 2010-01-01 00:00
+256, "The Expendables", 2010-01-01 00:00
+257, "Scott Pilgrim vs. the World", 2010-01-01 00:00
+258, "Eat Pray Love", 2010-01-01 00:00

@@ -5,13 +5,14 @@ from datetime import datetime
 from django.contrib.auth.models import User
 from django.test import TestCase
 
-from models import Unit, Item, Relation
+from models import Review, Item, Relation
 from utils import find_simular 
 
 class TestViews(TestCase):
+    fixtures = ['item.json', 'item']
 
-    def test_relation(self):
-        pass
+    def test_item_count(self):
+        self.assertEqual(Item.objects.all().count(), 257)
 
 
 

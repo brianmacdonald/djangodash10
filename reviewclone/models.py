@@ -4,7 +4,8 @@ from django.contrib.auth.models import User
 
 class Item(models.Model):
     name = models.CharField(max_length=155)
-    
+    released = models.DateTimeField()
+
 
 class Review(models.Model):
     user = models.ForeignKey(User)
