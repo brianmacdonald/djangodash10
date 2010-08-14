@@ -14,8 +14,13 @@ class Review(models.Model):
     
 
 class Relation(models.Model):
-    user_1 = models.ForeignKey(User, related_name='user 1') # Follower
-    user_2 = models.ForeignKey(User, related_name='user 2') # Followie
-    type = models.CharField(max_length=155, default='f')
+    user_1 = models.ForeignKey(User, related_name='user_1_%(app_label)s_%(class)s_related') # Follower
+    user_2 = models.ForeignKey(User, related_name='user_2_%(app_label)s_%(class)s_related') # Followie
+    type = models.CharField(max_length=155, default='follow')
     is_active = models.BooleanField(default=True)
  
+
+class Simular(models.Model):
+    user_1 = models.ForeignKey(User, related_name='user_1_%(app_label)s_%(class)s_related')  
+    user_2 = models.ForeignKey(User, related_name='user_2_%(app_label)s_%(class)s_related') 
+    count = models.IntegerField()
