@@ -6,7 +6,7 @@ class Item(models.Model):
     name = models.CharField(max_length=155)
     
 
-class Reviw(models.Model):
+class Review(models.Model):
     user = models.ForeignKey(User)
     item =models.ForeignKey(Item)
     amount = models.FloatField()
