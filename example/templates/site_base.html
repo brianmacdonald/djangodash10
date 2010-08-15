@@ -2,8 +2,9 @@
  <html>
      <head>
          <title>{% block extra_title %}{% endblock  %} | Review Clone</title>
-         <link rel="stylesheet" href="http://yui.yahooapis.com/2.7.0/build/reset-fonts-grids/reset-fonts-grids.css" type="text/css">
-         <script>
+         <link rel="stylesheet" href="http://yui.yahooapis.com/2.7.0/build/reset-fonts-grids/reset-fonts-grids.css" type="text/css"/>
+         <link rel="stylesheet" href="{{ MEDIA_URL }}/css/style.css" type="text/css"/>
+         <script type="text/javascript"> 
              {% block extra_javascript %}{% endblock %} 
          </script>
    </head>

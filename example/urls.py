@@ -23,3 +23,7 @@ urlpatterns += patterns('',
     (r'^', include('reviewclone.urls')),                      
 )
  
+urlpatterns += patterns('',
+    (r'^media/(?P<path>.*)$', 'django.views.static.serve',
+     {'document_root': "media/"}),
+)
