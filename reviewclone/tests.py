@@ -91,6 +91,12 @@ class TestModels(TestCase):
             password=self.generic_password
         )
 
+        # Creation relation
+        Relation(
+            user_1=self.first_user,
+            user_2=self.second_user,
+        ).save()
+
     def test_user_count(self):
         self.assertEqual(User.objects.all().count(), 3)
 
@@ -128,41 +134,96 @@ class TestViews(TestModels):
     def test_create_relation(self):
         response = self.logged_in_client.get(reverse('create_relation'))
         self.failUnlessEqual(response.status_code, 200)
-        self.failUnlessEqual(response.template[0].name, 'reviewclone/create_relation.html')
+        self.failUnlessEqual(response.template[0].name, 
+                             'reviewclone/create_relation.html')
+        form = response.context['form'] 
+        self.failUnlessEqual(len(form.fields), 1)
 
-    def test_create_relation_form(self):
-        #response = self.logged_in_client.get(reverse('create_relation'))
-        #self.failUnlessEqual(response.status_code, 200)
-        #self.failUnlessEqual(response.template[0].name, 'reviewclone/create_relation.html')
-        pass
+    def test_create_relation_post(self):
+        relation = Relation.objects.filter(
+            user_1=self.first_user,
+            user_2=self.third_user,
+        )
+        self.failUnlessEqual(relation.count(), 0)
+        response = self.logged_in_client.post(reverse('create_relation'),
+            {
+                'user_2': 3,
+            }
+        )
+        self.failUnlessEqual(response.status_code, 302)
+        self.failUnlessEqual(relation.count(), 1)
 
-    def test_create_relation_error(self):
-        response = self.logged_in_client.get(reverse('create_relation'))
+    def test_create_relation_post_error(self):
+        relation = Relation.objects.filter(
+            user_1=self.first_user,
+            user_2=self.second_user,
+        )
+        self.failUnlessEqual(relation.count(), 1)        
+        response = self.logged_in_client.post(reverse('create_relation'),
+            {
+                'user_2': 2,
+            }
+        )
         self.failUnlessEqual(response.status_code, 200)
+        self.failUnlessEqual(response.template[0].name, 
+                             'reviewclone/create_relation.html')
+        has_relation = response.context['has_relation'] 
+        self.failUnlessEqual(has_relation, True)
 
     def test_delete_relation(self):
         response = self.logged_in_client.get(reverse('delete_relation'))
-        self.failUnlessEqual(response.status_code, 200) 
+        self.failUnlessEqual(response.status_code, 200)
+        user_2 = response.context['user_2']
+        self.failUnlessEqual(user_2, None)
+        form = response.context['form'] 
+        self.failUnlessEqual(len(form.fields), 1)           
 
+    def test_delete_relation_post(self):
+        relation = Relation.objects.filter(
+            user_1=self.first_user,
+            user_2=self.second_user,
+        )
+        self.failUnlessEqual(relation.count(), 1)
+        response = self.logged_in_client.post(reverse('delete_relation'),
+            {
+                'user_2': 2,
+            }
+        )
+        self.failUnlessEqual(response.status_code, 302)
+        self.failUnlessEqual(relation.count(), 0) 
+        
     def test_relations_list(self):
         response = self.logged_in_client.get(reverse('relations'))
         self.failUnlessEqual(response.status_code, 200)
+        self.failUnlessEqual(response.template[0].name, 
+                             'reviewclone/relations_list.html')
+        object_list = response.context['object_list']
+        self.failUnlessEqual(object_list.count(), 1)
 
     def test_dashboard(self):
         response = self.logged_in_client.get(reverse('dashboard'))
         self.failUnlessEqual(response.status_code, 200) 
+        self.failUnlessEqual(response.template[0].name,
+                             'reviewclone/dashboard.html')
+        object_list = response.context['object_list']
+        self.failUnlessEqual(object_list.count(), 6) 
 
-    def test_dashboard_access(self):
+    def test_dashboard_no_access(self):
         response = self.not_logged_in_client.get(reverse('dashboard'))
         self.failUnlessEqual(response.status_code, 302)
 
     def test_user_reviews(self):
         response = self.logged_in_client.get(
             reverse('user_reviews', 
-                args=[self.first_user.username],
+                args=[self.second_user.username],
             )
         )
         self.failUnlessEqual(response.status_code, 200) 
+        self.failUnlessEqual(response.template[0].name, 
+                             'reviewclone/user_reviews.html')
+        object_list = response.context['object_list']
+        self.failUnlessEqual(object_list[0].user, self.second_user) 
+        self.failUnlessEqual(object_list.count(), 3) 
 
     def test_user_reviews_404(self):
         response = self.logged_in_client.get(
@@ -174,23 +235,59 @@ class TestViews(TestModels):
 
     def test_simular_list(self):
         response = self.logged_in_client.get(reverse('simular_list'))
-        self.failUnlessEqual(response.status_code, 200)  
+        self.failUnlessEqual(response.status_code, 200) 
+        self.failUnlessEqual(response.template[0].name,
+                             'reviewclone/simular_list.html')
+        # Test simular list count       
+        simular_list = response.context['object_list']
+        self.failUnlessEqual(simular_list.count(), 1) 
+        simular_query_list = Simular.objects.filter(user_1=self.first_user) 
+        self.failUnlessEqual(simular_list.count(), 1) 
 
     def test_items_list(self):
         response = self.logged_in_client.get(reverse('items_list'))
         self.failUnlessEqual(response.status_code, 200) 
+        self.failUnlessEqual(response.template[0].name, 
+                             'reviewclone/items_list.html')
+        items = response.context['object_list']
+        self.failUnlessEqual(items.count(), 257) 
 
     def test_items_list_letter(self):
-        response = self.logged_in_client.get(reverse('items_list'))
+        response = self.logged_in_client.get(
+            reverse('items_list_letter',
+                args=['S'],       
+            ),        
+        )
         self.failUnlessEqual(response.status_code, 200) 
+        self.failUnlessEqual(response.template[0].name,
+                             'reviewclone/items_list.html')
+        items = response.context['object_list']
+        self.failUnlessEqual(items[1].name, u'Star Wars: Episode V - The Empire Strikes Back') 
 
-    def test_create_review_form(self):
+    def test_create_review(self):
         response = self.logged_in_client.get(
             reverse('create_review', 
                 args=[2],
-                   )
+            )
         )
         self.failUnlessEqual(response.status_code, 200) 
+        self.failUnlessEqual(response.template[0].name, 
+                             'reviewclone/create_review.html')
+        form = response.context['form'] 
+        self.failUnlessEqual(len(form.fields), 1)
+        item = response.context['item'] 
+        self.failUnlessEqual(item.name, u'The Shawshank Redemption')
+
+    def test_create_review_post(self):
+        response = self.logged_in_client.post(
+            reverse('create_review', 
+                args=[10],
+            ),
+            {
+                'amount': 5,
+            } 
+        )
+        self.failUnlessEqual(response.status_code, 302) 
 
     def test_create_review_error(self):
         response = self.logged_in_client.get(
@@ -199,8 +296,12 @@ class TestViews(TestModels):
             )
         )
         self.failUnlessEqual(response.status_code, 200) 
+        self.failUnlessEqual(response.template[0].name,
+                             'reviewclone/create_review.html')
 
     def test_after_review(self):
         response = self.logged_in_client.get(reverse('after_review', args=[1]))
         self.failUnlessEqual(response.status_code, 200)  
+        self.failUnlessEqual(response.template[0].name,
+                             'reviewclone/after_review.html')
 
