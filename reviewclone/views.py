@@ -15,6 +15,11 @@ from reviewclone.utils import find_similar
 @login_required
 def create_relation(request, 
                     template_name="reviewclone/create_relation.html"):
+    """
+    Creates a relation between the current user and another user.
+    If the current user already has a relation with the user
+    `has_relation` will be True.
+    """
     has_relation = False
     user_2 = None
     if request.POST:
@@ -48,6 +53,11 @@ def create_relation(request,
 @login_required
 def delete_relation(request, 
                     template_name="reviewclone/delete_relation.html"):
+    """
+    Deletes relation between the current user and another user.
+    All relations will be deleted incase some how there is more 
+    then one.
+    """
     user_2 = None
     if request.POST:
         user_2_id = request.POST.get('user_2')
@@ -75,6 +85,9 @@ def delete_relation(request,
 @login_required
 def relations_list(request, 
                    template_name="reviewclone/relations_list.html"):
+    """
+
+    """
     user_relations = Relation.objects.filter(user_1=request.user)
     return render_to_response(
         template_name,
