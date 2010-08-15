@@ -1,5 +1,6 @@
 from django.contrib import messages  
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.template import RequestContext 
@@ -27,7 +28,14 @@ def signup(request, template_name="signup.html"):
     if request.POST:
         form = UserForm(request.POST)
         if form.is_valid():
-            form.save()                                      
+            user = User.objects.create_user(
+                form.cleaned_data.get('username'),
+                form.cleaned_data.get('email'),
+                form.cleaned_data.get('password'),
+            )
+            user.first_name = form.cleaned_data.get('first_name')
+            user.last_name = form.cleaned_data.get('last_name')
+            user.save()
             return HttpResponseRedirect(reverse('after_signup')) 
     else:
         form = UserForm()

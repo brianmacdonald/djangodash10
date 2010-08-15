@@ -68,6 +68,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Site Apps
     'reviewclone',
+    'registration',
 )
 
 ROOT_URLCONF = 'urls'
