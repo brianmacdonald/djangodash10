@@ -13,8 +13,6 @@ You can follow these Clones and next time they review a movie there's a good cha
 Usage instructions:
 -------------------
 
-    $ pip -r requirements.txt
-
-    $ cd example/
+    $ pip install -r requirements.txt
 
     $ python manage.py runserver
