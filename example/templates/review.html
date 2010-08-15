@@ -1,0 +1,8 @@
+
+<div class="review">
+    <h2>{{ review.item.name }}</h2>
+    <h4>{% url user_review review.item.user.username %}</h4>
+    <p>
+        Stars: {{ review.amount }}
+    </p>
+</div>
