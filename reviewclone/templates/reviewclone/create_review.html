@@ -18,6 +18,28 @@
 
 {% block content %}
 
+    <h2>Create Review for {{ item.name }}</h2>
+
+    {% if review_exist %}
+        <div class="tip">
+            You have already reviewed this.<br/>
+         {% if random %}
+            <a href="{% url create_review random.pk %}">Review another</a>
+         {% else %}
+             <a href="{% url dashboard %}">Return to dashboard</a>
+         {% endif %}   
+       </div>
+    {% else %}
+         {% include 'form.html' %}
+         {% if random %}
+            <a href="{% url create_review random.pk %}">I haven't seen this movie</a>
+         {% else %}
+             <a href="{% url dashboard %}">Return to dashboard</a>
+         {% endif %}   
+    {% endif %}
+
+ 
+
 {% endblock %}
 
 

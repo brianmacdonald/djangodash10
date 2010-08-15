@@ -18,6 +18,17 @@
 
 {% block content %}
 
+    <h2>Users you are following</h2>
+    
+    {% if object_list.count > 0 %}
+        {% for relation in object_list %}
+            {% include 'relation.html' %}
+        {% endfor  %}
+    {% else %}
+        You are not following any users.
+        <a href="{% url simular_list %}">Find your clones</a>
+    {% endif  %} 
+
 {% endblock %}
 
 

@@ -17,7 +17,15 @@
 
 
 {% block content %}
+    <h2>Reviews made by {{ user_object.username }}</h2>
 
+    {% if object_list.count > 0 %}
+        {% for review in object_list %}
+            {% include 'review.html' %}
+        {% endfor  %}
+    {% else %}
+        {{ user_object..username }} have no reviews.
+    {% endif  %}     
 {% endblock %}
 
 

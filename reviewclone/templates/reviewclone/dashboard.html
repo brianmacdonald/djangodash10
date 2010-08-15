@@ -18,6 +18,17 @@
 
 {% block content %}
 
+    <h2>Dashboard</h2>
+
+    {% if object_list.count > 0 %}
+        {% for review in object_list %}
+            {% include 'review.html' %}
+        {% endfor  %}
+    {% else %}
+        You have no reviews.
+        <a href="{% url items_list %}">Get Started</a>
+    {% endif  %}
+
 {% endblock %}
 
 

@@ -18,6 +18,17 @@
 
 {% block content %}
 
+    <h2>Your Clones</h2>
+    
+    {% if object_list.count > 0 %}
+        {% for simular in object_list %}
+            {% include 'simular.html' %}
+        {% endfor  %}
+    {% else %}
+        You have no clones.
+        <a href="{% url items_list %}">Review more movies</a>
+    {% endif  %}  
+    
 {% endblock %}
 
 

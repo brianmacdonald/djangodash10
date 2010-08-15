@@ -18,6 +18,14 @@
 
 {% block content %}
 
+    {% if object_list.count > 0 %}
+        {% for item in object_list %}
+            {% include 'item.html' %}
+        {% endfor  %}
+    {% else %}
+        There are no items to review.
+    {% endif  %} 
+
 {% endblock %}
 
 

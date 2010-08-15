@@ -18,6 +18,20 @@
 
 {% block content %}
 
+     <h2>Review Created</h2>
+
+     <ul>
+         <li>Movie Title: {{ review.item.name }}</li>
+         <li>Your Review: {{ review.amount  }} star(s)</li>
+     </ul>
+
+     {% if random %}
+         You need to review more movies.
+         <a href="{% url create_review random.pk %}">Review another</a>
+     {% else %}
+         <a href="{% url dashboard %}">Return to dashboard</a>
+     {% endif %}
+
 {% endblock %}
 
 
