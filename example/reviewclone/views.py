@@ -9,8 +9,8 @@ from django.template import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404
 
 from reviewclone.forms import ReviewForm, RelationForm
-from reviewclone.models import Item, Review, Relation, Simular
-from reviewclone.utils import find_simular
+from reviewclone.models import Item, Review, Relation, Similar
+from reviewclone.utils import find_similar
 
 @login_required
 def create_relation(request, 
@@ -114,22 +114,22 @@ def user_reviews(request, username_slug,
     )
 
 @login_required
-def simular_list(request, 
-                 template_name="reviewclone/simular_list.html"):
-    simular_dict = find_simular(request.user)
+def similar_list(request, 
+                 template_name="reviewclone/similar_list.html"):
+    similar_dict = find_similar(request.user)
     # Remove old
-    Simular.objects.filter(user_1=request.user).delete()
-    for user, count in simular_dict.iteritems():
-        Simular(
+    Similar.objects.filter(user_1=request.user).delete()
+    for user, count in similar_dict.iteritems():
+        Similar(
             user_1=request.user,
             user_2=user,
             count=count
         ).save() 
-    simular = Simular.objects.filter(user_1=request.user)
+    similar = Similar.objects.filter(user_1=request.user)
     return render_to_response(
         template_name,
         {
-            'object_list': simular,
+            'object_list': similar,
         },
         context_instance=RequestContext(request)
     )
@@ -207,4 +207,4 @@ def after_review(request, review_id,
         },
         context_instance=RequestContext(request)
     )        
- 
+

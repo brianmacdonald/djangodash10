@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from reviewclone.models import Review, Item, Relation, Simular
+from reviewclone.models import Review, Item, Relation, Similar
 
 class ReviewAdmin(admin.ModelAdmin):
     pass
@@ -14,6 +14,6 @@ class RelationAdmin(admin.ModelAdmin):
     pass
 admin.site.register(Relation, RelationAdmin) 
 
-class SimularAdmin(admin.ModelAdmin):
+class SimilarAdmin(admin.ModelAdmin):
     pass
-admin.site.register(Simular, RelationAdmin)
+admin.site.register(Similar, RelationAdmin)

@@ -7,8 +7,8 @@ from django.core.urlresolvers import reverse
 from django.test import TestCase
 from django.test.client import Client
 
-from reviewclone.models import Review, Item, Relation, Simular
-from reviewclone.utils import find_simular 
+from reviewclone.models import Review, Item, Relation, Similar
+from reviewclone.utils import find_similar 
 
 class TestModels(TestCase):
     fixtures = ['item.json', 'item']
@@ -107,7 +107,7 @@ class TestModels(TestCase):
         self.assertEqual(Review.objects.all().count(), 8)
 
 
-class TestSimular(TestModels):
+class TestSimilar(TestModels):
 
     def test_first_user_review_count(self):
         self.assertEqual(Review.objects.filter(user=self.first_user).count(), 3)
@@ -116,17 +116,17 @@ class TestSimular(TestModels):
         self.assertEqual(Review.objects.filter(user=self.second_user).count(), 3)
 
     def test_first_user(self):
-        self.assertEqual(len(find_simular(self.first_user)), 2)
+        self.assertEqual(len(find_similar(self.first_user)), 1)
 
-    def test_create_simular(self):
-        for user, count in find_simular(self.first_user).iteritems():
-            Simular(
+    def test_create_similar(self):
+        for user, count in find_similar(self.first_user).iteritems():
+            Similar(
                 user_1=self.first_user, 
                 user_2=user, 
                 count=count
             ).save()
-        simular_list = Simular.objects.filter(user_1=self.first_user)
-        self.assertEqual(simular_list.count(), 2)
+        similar_list = Similar.objects.filter(user_1=self.first_user)
+        self.assertEqual(similar_list.count(), 1)
  
 
 class TestViews(TestModels):
@@ -233,16 +233,16 @@ class TestViews(TestModels):
         )
         self.failUnlessEqual(response.status_code, 404) 
 
-    def test_simular_list(self):
-        response = self.logged_in_client.get(reverse('simular_list'))
+    def test_similar_list(self):
+        response = self.logged_in_client.get(reverse('similar_list'))
         self.failUnlessEqual(response.status_code, 200) 
         self.failUnlessEqual(response.template[0].name,
-                             'reviewclone/simular_list.html')
-        # Test simular list count       
-        simular_list = response.context['object_list']
-        self.failUnlessEqual(simular_list.count(), 1) 
-        simular_query_list = Simular.objects.filter(user_1=self.first_user) 
-        self.failUnlessEqual(simular_list.count(), 1) 
+                             'reviewclone/similar_list.html')
+        # Test similar list count       
+        similar_list = response.context['object_list']
+        self.failUnlessEqual(similar_list.count(), 1) 
+        similar_query_list = Similar.objects.filter(user_1=self.first_user) 
+        self.failUnlessEqual(similar_list.count(), 1) 
 
     def test_items_list(self):
         response = self.logged_in_client.get(reverse('items_list'))

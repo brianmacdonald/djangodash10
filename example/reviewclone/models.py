@@ -23,6 +23,7 @@ class Item(models.Model):
     def __unicode__(self):
         return self.name
 
+
 class Review(models.Model):
     user = models.ForeignKey(User)
     item = models.ForeignKey(Item)
@@ -32,6 +33,7 @@ class Review(models.Model):
     def __unicode__(self):
         return "%s's %s review" % (self.user.username, self.item.name)
 
+
 class Relation(models.Model):
     user_1 = models.ForeignKey(User, related_name='user_1_%(app_label)s_%(class)s_related') # Follower
     user_2 = models.ForeignKey(User, related_name='user_2_%(app_label)s_%(class)s_related') # Followie
@@ -39,7 +41,7 @@ class Relation(models.Model):
     is_active = models.BooleanField(default=True)
  
 
-class Simular(models.Model):
+class Similar(models.Model):
     user_1 = models.ForeignKey(User, related_name='user_1_%(app_label)s_%(class)s_related')  
     user_2 = models.ForeignKey(User, related_name='user_2_%(app_label)s_%(class)s_related') 
     count = models.IntegerField()

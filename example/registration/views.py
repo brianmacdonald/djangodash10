@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect
 from django.template import RequestContext 
 from django.shortcuts import render_to_response
 
-from example.forms import UserForm
+from registration.forms import UserForm
 
 from reviewclone.models import Review
 
