@@ -11,6 +11,8 @@ class TestViews(TestCase):
         self.failUnlessEqual(response.status_code, 200)
 
     def test_signup_post(self):
+        users = User.objects.all()
+        self.failUnlessEqual(users.count(), 0)
         not_logged_in_client = Client()
         response = not_logged_in_client.post(reverse('signup'),
             {
@@ -22,7 +24,6 @@ class TestViews(TestCase):
             }
         )
         self.failUnlessEqual(response.status_code, 302)
-        users = User.objects.all()
         self.failUnlessEqual(users.count(), 1)
  
 
