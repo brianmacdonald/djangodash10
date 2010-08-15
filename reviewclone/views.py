@@ -86,7 +86,7 @@ def delete_relation(request,
 def relations_list(request, 
                    template_name="reviewclone/relations_list.html"):
     """
-
+    All relations the current user has.
     """
     user_relations = Relation.objects.filter(user_1=request.user)
     return render_to_response(
@@ -100,7 +100,7 @@ def relations_list(request,
 @login_required
 def dashboard(request, 
               template_name="reviewclone/dashboard.html"):
-    """Combination list of users reviews and followies reviews"""
+    """Combination list of users reviews and relation users reviews"""
     relation_users = Relation.objects.filter(user_1=request.user)
     user_reviews = Review.objects.filter(
         Q(user=request.user)|Q(user__in=relation_users.values_list('user_2'))
@@ -115,6 +115,9 @@ def dashboard(request,
 
 def user_reviews(request, username_slug, 
                  template_name="reviewclone/user_reviews.html"):
+    """
+    All reviews a user has.
+    """
     user = get_object_or_404(User, username=username_slug)
     reviews = Review.objects.filter(user=user).order_by('-created_at')
     return render_to_response(
@@ -129,8 +132,13 @@ def user_reviews(request, username_slug,
 @login_required
 def similar_list(request, 
                  template_name="reviewclone/similar_list.html"):
+    """
+    Finds users with similar reviews using `find_similar`
+    The similar rows will be deleted for the current user, then
+    each user returned by `find_similar` will be added with the
+    `count` of similar reviews.
+    """
     similar_dict = find_similar(request.user)
-    # Remove old
     Similar.objects.filter(user_1=request.user).delete()
     for user, count in similar_dict.iteritems():
         Similar(
@@ -149,6 +157,10 @@ def similar_list(request,
 
 def items_list(request, letter=None, 
                template_name="reviewclone/items_list.html"):
+    """
+    All items list. Can be filtered by first `letter` of the `name` of
+    the item.
+    """
     if letter:
         items = Item.objects.filter(name__startswith=letter)
     else:
@@ -165,6 +177,14 @@ def items_list(request, letter=None,
 @login_required
 def create_review(request, item_id, 
                   template_name="reviewclone/create_review.html"):
+    """
+    Current user can create a new review.
+    Find the item with `item_id` then make sure the current user
+    does not already have a review. If a review is found 
+    `review_exist` will be True. If the current user's review count is less 
+    than `REVIEWCLONE_REVIEW_MIN`,`random_item` will be 1 item the user 
+    has not reviewed yet.
+    """
     review_exist = False
     random_item = None
     item = get_object_or_404(Item, pk=item_id)
@@ -202,6 +222,11 @@ def create_review(request, item_id,
 @login_required
 def after_review(request, review_id, 
                  template_name="reviewclone/after_review.html"):
+    """
+    Links current user to more reviews after a review has been created.
+    If the current user's review count is less than `REVIEWCLONE_REVIEW_MIN`
+    `random_item` will be 1 item the user has not reviewed yet.
+    """
     random_item = None
     review = get_object_or_404(Review, pk=review_id)
     user_reviews = Review.objects.filter(user=request.user)
