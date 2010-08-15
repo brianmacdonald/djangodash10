@@ -9,7 +9,9 @@
    </head>
    <body>
         <div id="doc" class="yui-t7 {% block extra_page_class %}{% endblock %}">
-          <div id="hd" role="banner"><h1>ReviewClone</h1></div>
+            <div id="hd" role="banner">
+                <h1><a href="{% url home %}">ReviewClone</a></h1>
+            </div>
              <div id="bd" role="main">
                  <div class="yui-g">
                      <ul class="messages">
@@ -21,6 +23,7 @@
                      {% endblock %} 
                  </div>
                  <div id="ft" role="contentinfo">
+                     Find out more about <a href="http://github.com/brianmacdonald/djangodash10">Review Clone</a>
                 {% block extra_footer %}
                 {% endblock %} 
                  </div>

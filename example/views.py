@@ -7,6 +7,16 @@ from django.shortcuts import render_to_response
 
 from example.forms import UserForm
 
+def home(request, template_name="home.html"):
+    if hasattr(request.user, 'pk'):
+        HttpResponseRedirect(reverse('dashboard')) 
+    return render_to_response(
+        template_name,
+        {
+        },
+        context_instance=RequestContext(request)
+    ) 
+
 def signup(request, template_name="signup.html"):
     if hasattr(request.user, 'pk'):
         HttpResponseRedirect(reverse('dashboard')) 

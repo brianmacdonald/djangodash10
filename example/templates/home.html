@@ -15,8 +15,24 @@
 
 {% endblock %} 
 
-
 {% block content %}
+
+    <div class="tip">
+        <h4>What is Review Clone?</h4>
+        <p>
+            Review clone is a site where you can review movies and find other user with the simular reviews to yours. We call these "Clones."<br/>
+            You can follow these Clones and next time they review a movie there is a good chance that you'll have the same opinion.
+        </p>
+    </div>
+
+    <ul>
+        <li>
+            <a href="{% url login %}">Login</a>
+        </li>
+         <li>
+            <a href="{% url signup %}">Sign Up</a>
+         </li>
+    </ul>
 
 {% endblock %}
 

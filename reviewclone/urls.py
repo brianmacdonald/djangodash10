@@ -17,5 +17,5 @@ urlpatterns = patterns('',
         name='after_review'),
     url(r'user/(?P<username_slug>[-\w]+)/$', 'reviewclone.views.user_reviews', 
         name='user_reviews'),
-    url(r'$', 'reviewclone.views.dashboard', name='dashboard'),
+    url(r'dashboard/$', 'reviewclone.views.dashboard', name='dashboard'),
 )
