@@ -2,7 +2,7 @@
 
 
 {% block extra_title %}
-
+    Find your clone
 {% endblock  %}
 
 
@@ -18,21 +18,25 @@
 {% block content %}
 
     <div class="tip">
-        <h4>What is Review Clone?</h4>
+        <h3>What is Review Clone?</h3>
         <p>
-            Review clone is a site where you can review movies and find other user with the simular reviews to yours. We call these "Clones."<br/>
-            You can follow these Clones and next time they review a movie there is a good chance that you'll have the same opinion.
+            Review Clone is a site where you can review movies and find other user with the simular reviews to yours. We call these "Clones."<br/>
+            You can follow these Clones and next time they review a movie there's a good chance that you'll have the same opinion.
         </p>
     </div>
 
-    <ul>
-        <li>
-            <a href="{% url login %}">Login</a>
-        </li>
-         <li>
+    <p class="home-user-links">
+            <a href="{% url login %}">Login</a> or 
             <a href="{% url signup %}">Sign Up</a>
-         </li>
-    </ul>
+    </p>
+
+    <div class="home-reviews">
+        <h3>Latest Reviews:</h3>
+        {% for review in reviews %}
+            {% include 'review.html' %}
+        {% endfor %}
+
+    </div>
 
 {% endblock %}
 

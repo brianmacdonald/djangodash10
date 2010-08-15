@@ -11,7 +11,16 @@
    <body>
         <div id="doc" class="yui-t7 {% block extra_page_class %}{% endblock %}">
             <div id="hd" role="banner">
-                <h1><a href="{% url home %}">ReviewClone</a></h1>
+                <h1 class="logo"><a href="{% url home %}">Review Clone</a></h1>
+                {% if user.username %}
+                <ul class="menu">
+                    <li><a href="{% url dashboard %}">Dashboard</a></li>
+                    <li><a href="{% url simular_list %}">Your clones</a></li>
+                    <li><a href="{% url relations %}">Following</a></li>
+                    <li><a href="{% url items_list %}">Review Movies</a></li>
+                    <li><a href="{% url logout %}">Logout</a></li>
+                </ul>
+                {% endif %}
             </div>
              <div id="bd" role="main">
                  <div class="yui-g">
@@ -23,8 +32,11 @@
                      {% block content %}
                      {% endblock %} 
                  </div>
+             </div>
                  <div id="ft" role="contentinfo">
-                     Find out more about <a href="http://github.com/brianmacdonald/djangodash10">Review Clone</a>
+                     Find out more about <a href="http://github.com/brianmacdonald/djangodash10">Review Clone</a>.
+                     <br/>
+                     Built for <a href="http://djangodash.com">DjangoDash 2010</a>
                 {% block extra_footer %}
                 {% endblock %} 
                  </div>

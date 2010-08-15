@@ -139,7 +139,7 @@ def items_list(request, letter=None,
     if letter:
         items = Item.objects.filter(name__startswith=letter)
     else:
-        items = Item.objects.all().order_by('released')
+        items = Item.objects.all().order_by('-released')
     return render_to_response(
         template_name,
         {

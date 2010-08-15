@@ -3,4 +3,8 @@
     <a href="{% url user_reviews relation.user_2.username %}">
         {{ relation.user_2.username }}
     </a>
+    <form action="{% url delete_relation %}" method="post">
+        <input type="hidden" name="user_2" value="{{ relation.user_2.pk }}"/>
+        <input type="submit" value="Unfollow user"/>
+    </form>
 </div>          

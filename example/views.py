@@ -7,12 +7,16 @@ from django.shortcuts import render_to_response
 
 from example.forms import UserForm
 
+from reviewclone.models import Review
+
 def home(request, template_name="home.html"):
     if hasattr(request.user, 'pk'):
-        HttpResponseRedirect(reverse('dashboard')) 
+        return HttpResponseRedirect(reverse('dashboard')) 
+    reviews = Review.objects.all().order_by('-created_at')[:5]
     return render_to_response(
         template_name,
         {
+            'reviews': reviews,
         },
         context_instance=RequestContext(request)
     ) 

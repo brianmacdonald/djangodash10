@@ -1,0 +1,135 @@
+body,h1,h2,h3,h4,h5,h6,p,ul,ol,dl,input,textarea { font-family: Helvetica, Arial, FreeSans, sans-serif; }
+
+/* HEADINGS */
+h1 { font-size: 40px; line-height: 50px; }
+h2 { font-size: 30px; line-height: 40px; }
+h3 { font-size: 20px; line-height: 30px; }
+h4 { font-size: 14px; line-height: 20px; }
+h5 { font-size: 14px; line-height: 20px; }
+h6 { font-size: 14px; line-height: 20px; }
+
+/* TEXT ELEMENTS */
+p, ul, ol, dl { margin-bottom: 20px; font-size: 14px; line-height: 20px; }
+ul, ol { padding-left: 20px;}
+ul { list-style-type: circle; }
+ol { list-style-type: decimal; }
+dl dt { font-weight: bold; }
+dl dd { padding-left: 10px; }
+abbr, acronym { text-decoration: underline; }
+a { color: #009; text-decoration: none; }
+a:hover { text-decoration: underline; }
+blockquote { margin: 20px 0; padding-left: 10px; }
+dfn { font-style: italic; font-weight: bold; }
+pre, code { margin: 20px 0; white-space: pre; }
+pre, code, tt { font: 10px monospace; line-height: 20px; }
+tt { display: block; margin: 20px 0; line-height: 20px; }
+
+/* TABLES */
+table { margin-bottom: 20px; }
+th,td { padding: 5px 10px 5px 0; }
+
+label { font-weight: bold; }
+fieldset { padding: 9px; margin-bottom: 20px; border: 1px solid #ddd; }
+legend { padding: 0 10px; font-weight: bold; font-size: 14px; line-height: 20px; }
+textarea { padding: 10px; }
+
+a {
+    color:#FF9B31;
+}
+
+form {
+    margin:5px 25px 40px;
+}
+
+#bd {
+}
+
+#ft {
+    padding:20px 5px 5px;
+    background: #eee;
+}
+
+#doc.yui-t7{
+    width:40em;
+}
+
+.tip{
+    background: #eee;
+    padding:3px;
+    margin:5px;
+    border:1px solid #ddd;
+}
+
+.logo {
+    text-shadow:1px 1px #BF6E17;
+}
+
+.logo a:hover{
+    color:#FFC17F;
+    text-decoration:none;    
+}
+
+div.review, div.item{
+    border-bottom:1px solid #ccc;
+}
+
+div.review:hover, div.item:hover{
+    background:#efefef;
+}
+
+div.review h2, div.item h2{
+    font-size:1.5em;
+    text-shadow:1px 1px #eee;
+}
+
+div.review a, div.item a{
+    color: #0099DD;
+}
+
+div.review p.stars, div.simular p.simular{
+    font-weight:bold;
+    font-size: 1.3em;
+    margin-top:5px;
+}
+
+li.message{
+    margin:5px;
+    padding:5px;
+    background:#FFB5DC;
+}
+
+ul.menu {
+    border-bottom:1px solid #eee;
+}
+
+ul.menu li{
+    display:inline;
+    margin:0px 8px;
+}
+
+ul.menu li a:hover{
+    color:#333;
+    text-decoration:none;
+}
+
+a.pseudo {
+    color: #0099DD;
+    display:block;
+    margin:3px 3px 15px;
+    text-align:center;
+}
+
+.home-user-links {
+    margin-top:20px;
+    color:#555;
+    text-align:center;
+}
+
+.home-user-links a{
+    font-size:1.5em;
+}
+
+.home-reviews h3{
+    border-bottom:1px solid #ccc;
+    font-size:2em;
+}
