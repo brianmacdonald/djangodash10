@@ -25,5 +25,9 @@ class TestViews(TestCase):
         )
         self.failUnlessEqual(response.status_code, 302)
         self.failUnlessEqual(users.count(), 1)
- 
+        self.failUnlessEqual(users[0].username, 'foo')
+        self.failUnlessEqual(users[0].first_name, 'eggs')
+        self.failUnlessEqual(users[0].last_name, 'foobar')
+        self.failUnlessEqual(users[0].email, 'spam@exmaple.com')
+
 
