@@ -1,1 +1,1 @@
-Django
+django==1.2

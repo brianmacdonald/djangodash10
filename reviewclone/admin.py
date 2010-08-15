@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from models import Review, Item, Relation, Simular
+from reviewclone.models import Review, Item, Relation, Simular
 
 class ReviewAdmin(admin.ModelAdmin):
     pass

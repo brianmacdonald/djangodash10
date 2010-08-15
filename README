@@ -1,4 +1,20 @@
- Django Dash 2010
- ================
+Django Dash 2010
+=================
 
- 
+Review Clone
+============
+
+What is Review Clone?
+
+Review Clone is a site where you can review movies and find other user with the similar reviews to yours. We call these "Clones." 
+You can follow these Clones and next time they review a movie there's a good chance that you'll have the same opinion.  
+
+
+Usage instructions:
+-------------------
+
+    $ pip -r requirements.txt
+
+    $ cd example/
+
+    $ python manage.py runserver
