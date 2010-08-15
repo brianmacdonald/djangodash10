@@ -77,5 +77,8 @@ LANGUAGES = (
     ('en', 'English'),
     )
 
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/dashboard/'
+
 REVIEWCLONE_OFFSET = 1.5
 REVIEWCLONE_REVIEW_MIN = 10
