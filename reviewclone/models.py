@@ -2,6 +2,20 @@ from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import User
 
+REVIEW_CHOICES = (
+    (0.5, '0.5 Star'),
+    (1, '1 Star'),
+    (1.5, '1.5 Stars'),
+    (2, '2 Stars'),
+    (2.5, '2.5 Stars'),
+    (3, '3 Stars'),
+    (3.5, '3.5 Stars'),
+    (4, '4 Stars'),
+    (4.5, '4.5 Stars'),
+    (5, '5 Stars'),
+)
+
+
 class Item(models.Model):
     name = models.CharField(max_length=155)
     released = models.DateTimeField()
@@ -12,8 +26,9 @@ class Item(models.Model):
 class Review(models.Model):
     user = models.ForeignKey(User)
     item = models.ForeignKey(Item)
-    amount = models.FloatField()
- 
+    amount = models.FloatField(choices=REVIEW_CHOICES)
+    created_at = models.DateTimeField(auto_now=True)
+
     def __unicode__(self):
         return "%s's %s review" % (self.user.username, self.item.name)
 

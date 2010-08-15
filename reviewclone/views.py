@@ -91,7 +91,7 @@ def dashboard(request,
     relation_users = Relation.objects.filter(user_1=request.user)
     user_reviews = Review.objects.filter(
         Q(user=request.user)|Q(user__in=relation_users.values_list('user_2'))
-    )
+    ).order_by('-created_at')
     return render_to_response(
         template_name,
         {
@@ -103,10 +103,11 @@ def dashboard(request,
 def user_reviews(request, username_slug, 
                  template_name="reviewclone/user_reviews.html"):
     user = get_object_or_404(User, username=username_slug)
-    reviews = Review.objects.filter(user=user)
+    reviews = Review.objects.filter(user=user).order_by('-created_at')
     return render_to_response(
         template_name,
         {
+            'user_object': user,
             'object_list': reviews,
         },
         context_instance=RequestContext(request)
@@ -138,7 +139,7 @@ def items_list(request, letter=None,
     if letter:
         items = Item.objects.filter(name__startswith=letter)
     else:
-        items = Item.objects.all().order_by('name')
+        items = Item.objects.all().order_by('released')
     return render_to_response(
         template_name,
         {
@@ -152,25 +153,35 @@ def items_list(request, letter=None,
 def create_review(request, item_id, 
                   template_name="reviewclone/create_review.html"):
     review_exist = False
+    random_item = None
     item = get_object_or_404(Item, pk=item_id)
+    if Review.objects.filter(item=item, user=request.user).count() > 0:
+        review_exist = True
     if request.POST:
         form = ReviewForm(request.POST)
-        if Review.objects.filter(item=item, user=request.user).count() > 0:
-            review_exist = True
+
         if form.is_valid() and review_exist == False:
             form.instance.user = request.user
             form.instance.item = item
             form.save()
             messages.add_message(request, messages.INFO, 
                                 'You reviewed %s.' % item)
-            return HttpResponseRedirect(reverse('after_review', args=[item.pk])) 
+            return HttpResponseRedirect(reverse('after_review', 
+                                                args=[form.instance.pk])) 
     else:
+        user_reviews = Review.objects.filter(user=request.user)
+        if user_reviews.count() < settings.REVIEWCLONE_REVIEW_MIN:
+            random_item = Item.objects.all().exclude(
+                pk__in=user_reviews.values_list('item__pk')
+            ).order_by('?')[0]
         form = ReviewForm()
     return render_to_response(
         template_name,
         {
             'item': item,
+            'review_exist': review_exist,
             'form': form,
+            'random': random_item,
         },
         context_instance=RequestContext(request)
     )
@@ -184,7 +195,7 @@ def after_review(request, review_id,
     # check review count
     if user_reviews.count() < settings.REVIEWCLONE_REVIEW_MIN:
         random_item = Item.objects.all().exclude(
-            pk=user_reviews.values_list('pk')
+            pk__in=user_reviews.values_list('item__pk')
         ).order_by('?')[0]
 
     return render_to_response(
