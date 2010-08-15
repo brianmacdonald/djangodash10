@@ -1,0 +1,11 @@
+
+<div class="similar">
+    <a href="{% url user_reviews similar.user_2.username %}">{{ similar.user_2 }}</a>
+    <form action="{% url create_relation %}" method="post">
+        <input type="hidden" name="user_2" value="{{ similar.user_2.pk }}"/>
+        <input type="submit" value="Follow user"/>
+    </form>
+    <p class="similar">
+        Similar review score: {{ similar.count }}
+    </p>
+</div>

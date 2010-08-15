@@ -86,7 +86,7 @@ div.review a, div.item a{
     color: #0099DD;
 }
 
-div.review p.stars, div.simular p.simular{
+div.review p.stars, div.similar p.simlar{
     font-weight:bold;
     font-size: 1.3em;
     margin-top:5px;
