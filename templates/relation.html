@@ -1,7 +1,7 @@
 
 <div class="relation">
-    <a href="{% url user_reviews relation.user_2.username %}">
-        {{ relation.user_2.username }}
+    <a href="{% url user_reviews relation.user_2.pk %}">
+    {{ relation.user_2.first_name }} {{ relation.user_2.last_name }}.
     </a>
     <form action="{% url delete_relation %}" method="post">
         <input type="hidden" name="user_2" value="{{ relation.user_2.pk }}"/>

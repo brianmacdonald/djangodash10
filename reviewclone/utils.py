@@ -1,9 +1,12 @@
 import operator
 
-from models import Review, Item, Relation
 from django.contrib.auth.models import User
-
 from django.conf import settings 
+
+
+from reviewclone.models import Review, Item, Relation
+
+from socialregistration.models import FacebookProfile
 
 def find_similar(p_user):
     """
@@ -39,4 +42,14 @@ def find_similar(p_user):
 		        except KeyError:
 		            similar[user] = 1
     return similar 
+
+
+def facebook_profile(user, request):
+    """
+    Creates a users first and last name if it does not exist
+    by using the `facebook` object in the request.
+    """
+    fb_profile = FacebookProfile.objects.get(user=user)
+    return request.facebook.graph.get_object(fb_profile.uid)
+
 

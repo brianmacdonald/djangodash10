@@ -1,6 +1,5 @@
 {% extends "site_base.html" %}
 
-
 {% block extra_title %}
 
 {% endblock  %}
@@ -17,7 +16,10 @@
 
 
 {% block content %}
-    <h2>Reviews made by {{ user_object.username }}</h2>
+    <h2>
+    Reviews made by {{ user_object.first_name }}
+    {{ user_object.last_name }}.
+    </h2>
 
     {% if object_list.count > 0 %}
         {% for review in object_list %}

@@ -36,7 +36,8 @@ def create_relation(request,
             form.instance.user_1 = request.user
             form.save()
             messages.add_message(request, messages.INFO, 
-                                'You are now following %s' % user_2)
+                'You are now following %s %s.' % \
+                                 (user_2.first_name, user_2.last_name))
             return HttpResponseRedirect(reverse('dashboard'))  
     else:
         form = RelationForm()
@@ -69,7 +70,8 @@ def delete_relation(request,
                 user_2 = user_2,             
             ).delete()
             messages.add_message(request, messages.INFO, 
-                                 'You are no longer following %s' % user_2)
+                'You are now following %s %s.' % \
+                                 (user_2.first_name, user_2.last_name))
             return HttpResponseRedirect(reverse('dashboard'))
     else:
         form = RelationForm()
@@ -113,12 +115,12 @@ def dashboard(request,
         context_instance=RequestContext(request)
     )
 
-def user_reviews(request, username_slug, 
+def user_reviews(request, user_id, 
                  template_name="reviewclone/user_reviews.html"):
     """
     All reviews a user has.
     """
-    user = get_object_or_404(User, username=username_slug)
+    user = get_object_or_404(User, pk=user_id)
     reviews = Review.objects.filter(user=user).order_by('-created_at')
     return render_to_response(
         template_name,
@@ -197,6 +199,13 @@ def create_review(request, item_id,
             form.instance.user = request.user
             form.instance.item = item
             form.save()
+            if form.cleaned_data.get('post_review_message') == True:
+                request.facebook.graph.put_wall_post(
+                    'I just gave \"%s\" %s Stars on reviewclone.com.' % (item.name, form.instance.amount),
+                    # TODO: Add attachment
+                )
+                messages.add_message(request, messages.INFO, 
+                                    'Your review was posted to your Facebook wall.')
             messages.add_message(request, messages.INFO, 
                                 'You reviewed %s.' % item)
             return HttpResponseRedirect(reverse('after_review', 
@@ -219,22 +228,24 @@ def create_review(request, item_id,
         context_instance=RequestContext(request)
     )
  
-@login_required
 def after_review(request, review_id, 
                  template_name="reviewclone/after_review.html"):
     """
-    Links current user to more reviews after a review has been created.
-    If the current user's review count is less than `REVIEWCLONE_REVIEW_MIN`
-    `random_item` will be 1 item the user has not reviewed yet.
+    The review found by the `review_id` for all users.
+    If the review is owned by the current user and the user's review count 
+    is less than `REVIEWCLONE_REVIEW_MIN`, the `random_item` will be 1 
+    item the user has not reviewed yet.     
     """
     random_item = None
+    user_reviews = None
     review = get_object_or_404(Review, pk=review_id)
-    user_reviews = Review.objects.filter(user=request.user)
-    # check review count
-    if user_reviews.count() < settings.REVIEWCLONE_REVIEW_MIN:
-        random_item = Item.objects.all().exclude(
-            pk__in=user_reviews.values_list('item__pk')
-        ).order_by('?')[0]
+    if review.user == request.user:
+        user_reviews = Review.objects.filter(user=request.user)
+        # check review count
+        if user_reviews.count() < settings.REVIEWCLONE_REVIEW_MIN:
+            random_item = Item.objects.all().exclude(
+                pk__in=user_reviews.values_list('item__pk')
+            ).order_by('?')[0]
 
     return render_to_response(
         template_name,

@@ -1,4 +1,5 @@
 {% extends "site_base.html" %}
+{% load facebook_tags %}
 
 {% block extra_title %}
     Find your clone
@@ -22,9 +23,9 @@
         </p>
     </div>
 
+
     <p class="home-user-links">
-            <a href="{% url login %}">Login</a> or 
-            <a href="{% url signup %}">Sign Up</a>
+    {% facebook_button %}
     </p>
 
     <div class="home-reviews">
@@ -32,7 +33,6 @@
         {% for review in reviews %}
             {% include 'review.html' %}
         {% endfor %}
-
     </div>
 
 {% endblock %}

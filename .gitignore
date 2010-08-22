@@ -1,3 +1,5 @@
 *.pyc
 /secrets.py
 .DS_Store
+settings.py
+site.db

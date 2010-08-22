@@ -1,3 +1,4 @@
+{% load facebook_tags %}
 <!DOCTYPE HTML>
  <html>
      <head>
@@ -18,7 +19,7 @@
                     <li><a href="{% url similar_list %}">Your clones</a></li>
                     <li><a href="{% url relations %}">Following</a></li>
                     <li><a href="{% url items_list %}">Review Movies</a></li>
-                    <li><a href="{% url logout %}">Logout</a></li>
+                    <li><a href="#" onclick="javascript:FB.logout(function(response){ document.location = '{% url auth_logout %}' })">Logout</a></li>
                 </ul>
                 {% endif %}
             </div>
@@ -35,12 +36,11 @@
              </div>
                  <div id="ft" role="contentinfo">
                      Find out more about <a href="http://github.com/brianmacdonald/djangodash10">Review Clone</a>.
-                     <br/>
-                     Built for <a href="http://djangodash.com">DjangoDash 2010</a>
                 {% block extra_footer %}
                 {% endblock %} 
                  </div>
         </div>
+         {% facebook_js %}
     </body>
 </html>
 

@@ -18,18 +18,27 @@
 
 {% block content %}
 
-     <h2>Review Created</h2>
+    <h2>Review of {{ review.item.name }}</h2>
+    <p>By <a href="{% url user_reviews review.user.pk %}">
+        {{ review.user.first_name }} {{ review.user.last_name }}
+    </a></p>
 
      <ul>
-         <li>Movie Title: {{ review.item.name }}</li>
-         <li>Your Review: {{ review.amount  }} star(s)</li>
+         <li>Rating: {{ review.amount  }} star(s)</li>
+         <li>{{ review.comment  }}</li>
      </ul>
+
+     <fb:comments xid="{{ review.pk }}" canpost="true" candelete="true" returnurl="http://apps.facebook.com/reviewclone">
+     <fb:title>Comment about {{ review.item.name }}</fb:title>
+     </fb:comments>
 
      {% if random %}
          You need to review more movies.
          <a href="{% url create_review random.pk %}">Review another</a>
      {% else %}
-         <a href="{% url dashboard %}">Return to dashboard</a>
+         {% if user %}
+             <a href="{% url dashboard %}">Return to dashboard</a>
+         {% endif %}
      {% endif %}
 
 {% endblock %}

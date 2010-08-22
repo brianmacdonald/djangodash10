@@ -125,6 +125,11 @@ a.pseudo {
     text-align:center;
 }
 
+form.connect-button{
+    width:195px;
+    margin:auto;
+}
+
 .home-user-links a{
     font-size:1.5em;
 }

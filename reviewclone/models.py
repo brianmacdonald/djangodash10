@@ -28,6 +28,7 @@ class Review(models.Model):
     user = models.ForeignKey(User)
     item = models.ForeignKey(Item)
     amount = models.FloatField(choices=REVIEW_CHOICES)
+    comment = models.TextField()
     created_at = models.DateTimeField(auto_now=True)
 
     def __unicode__(self):

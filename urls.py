@@ -13,10 +13,10 @@ urlpatterns = patterns('',
 
 urlpatterns += patterns('',
     url(r'^$', 'registration.views.home',  name="home"),
-    url(r'^login/$', 'django.contrib.auth.views.login', {'template_name': 'login.html'}, name="login"),
-    url(r'^after_signup/$', 'django.contrib.auth.views.login', {'template_name': 'after_signup.html'}, name="after_signup"),
-    url(r'^logout/$', 'django.contrib.auth.views.logout', {'template_name': 'logout.html'}, name="logout"),
-    url(r'^signup/', 'registration.views.signup', name="signup"),                      
+    url(r'^logout/$', 'django.contrib.auth.views.logout', {'template_name': 'logout.html'}, 
+        name="auth_logout"),
+    (r'^social/', include('socialregistration.urls')),                      
+
 )
 
 urlpatterns += patterns('',

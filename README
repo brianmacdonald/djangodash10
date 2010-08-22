@@ -13,6 +13,14 @@ You can follow these Clones and next time they review a movie there's a good cha
 Usage instructions:
 -------------------
 
-    $ pip install -r requirements.txt
+1. Create a virtualenv and run `$ pip install -r requirements.txt`
+2. Add `reviewclone` to your to your INSTALLED_APPS settings of Django. 
+3. Add the following to your settings.py file:
 
-    $ python manage.py runserver
+ - `REVIEWCLONE_OFFSET`  Float. The amount of offset used compare reviews to find clones.
+ - `REVIEWCLONE_REVIEW_MIN` Integer. The amount of reviews a user must have.
+
+4. Read socialregistration's README file:
+http://github.com/flashingpumpkin/django-socialregistration/blob/master/README.rst
+
+

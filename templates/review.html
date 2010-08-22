@@ -1,7 +1,12 @@
 
 <div class="review">
-    <h2>{{ review.item.name }}</h2>
-    <a href="{% url user_reviews review.user.username %}">{{ review.user.username }}</a>
+    <h2>
+        <a href="{% url after_review review.pk %}">
+            {{ review.item.name }}
+        </a>
+    </h2>
+    <a href="{% url user_reviews review.user.pk %}">
+        {{ review.user.first_name }} {{ review.user.last_name }}.</a>
     <p class="stars">
         Stars: {{ review.amount }}
     </p>

@@ -1,31 +1,31 @@
 {% extends "site_base.html" %}
-
+{% load facebook_tags %}
 
 {% block extra_title %}
-
+    Find your clone
 {% endblock  %}
 
 
 {% block extra_javascript %}
-
 {% endblock %}
 
 
 {% block extra_page_class %}
-
 {% endblock %} 
-
 
 {% block content %}
 
-   <h2>Logout</h2>
+    <div class="tip">
+        <h3>Something went wrong</h3>
+        <p>
+        Try to login again below.
+        </p>
+    </div>
 
-   <div class="tip">
-       <p>
-           You have been logged out.
-           <a href="{% url home %}">Log back in</a>
-       </p>
-   </div>
+
+    <p class="home-user-links">
+    {% facebook_button %}
+    </p>
 
 {% endblock %}
 
@@ -33,3 +33,4 @@
 {% block extra_footer %}
 
 {% endblock %}
+
