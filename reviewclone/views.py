@@ -194,7 +194,6 @@ def create_review(request, item_id,
         review_exist = True
     if request.POST:
         form = ReviewForm(request.POST)
-
         if form.is_valid() and review_exist == False:
             form.instance.user = request.user
             form.instance.item = item
