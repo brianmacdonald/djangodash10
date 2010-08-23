@@ -201,6 +201,7 @@ def create_review(request, item_id,
             form.save()
             if form.cleaned_data.get('post_review_message') == True:
                 request.facebook.graph.put_wall_post(
+                    # TODO: Change to template
                     'I just gave \"%s\" %s Stars on reviewclone.com.' % (item.name, form.instance.amount),
                     # TODO: Add attachment
                 )
